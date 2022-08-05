@@ -3,6 +3,11 @@
   margin: 0 auto;
 }
 
+@media screen and (max-width: 920px) {
+  .page__container {
+    max-width: calc(100vw - (2*25px));
+  }
+}
 
 @media screen and (max-width: 500px) {
   .page__container {
