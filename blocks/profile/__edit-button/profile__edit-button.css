@@ -5,9 +5,19 @@
   background-image: url(../../../images/info_button_img.svg);
   background-position: center;
   background-repeat: no-repeat;
+  background-size: 10px 10px;
   background-color: #000;
   border: 1px solid #FFF;
   cursor: pointer;
   grid-area: B;
   align-self: center;
+}
+
+@media screen and (max-width: 400px) {
+  .profile__edit-button {
+    height: 18px;
+    width: 18px;
+    padding: 5px;
+    background-size: 7.5px 7.5px;
+  }
 }

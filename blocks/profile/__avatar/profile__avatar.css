@@ -5,3 +5,9 @@
   background-color: #c4c4c4;
   margin-right: 30px;
 }
+
+@media screen and (max-width: 760px) {
+  .profile__avatar {
+    margin: 0 auto;
+  }
+}
