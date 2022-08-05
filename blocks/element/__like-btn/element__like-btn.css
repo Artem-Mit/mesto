@@ -6,4 +6,10 @@
   border: none;
   background-color: transparent;
   margin-right: 5px;
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.element__like-btn:hover {
+  opacity: .5;
 }

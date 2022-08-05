@@ -11,6 +11,11 @@
   cursor: pointer;
   grid-area: B;
   align-self: center;
+  transition: opacity .3s ease-in-out;
+}
+
+.profile__edit-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 400px) {
