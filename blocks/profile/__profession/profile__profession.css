@@ -1,10 +1,12 @@
 .profile__profession {
   margin: 0;
-  max-height: 18px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   grid-area: C;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
