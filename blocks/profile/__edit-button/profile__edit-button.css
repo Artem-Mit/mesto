@@ -6,10 +6,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 10px 10px;
-  background-color: #000;
+  background-color: transparent;
   border: 1px solid #FFF;
   cursor: pointer;
-  grid-area: B;
+  grid-area: btn;
   align-self: center;
   transition: opacity .3s ease-in-out;
 }

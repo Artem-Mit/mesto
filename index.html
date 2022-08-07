@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
-  <title>Project MESTO</title>
+  <title>Место</title>
 </head>
 <body class="page">
   <div class="page__container">
@@ -17,52 +17,52 @@
         <img src="images/profile__img.png" alt="Аватар профиля" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <h2 class="profile__profession">Исследователь океана</h2>
-          <button class="profile__edit-button"></button>
+          <p class="profile__profession">Исследователь океана</p>
+          <button type="button" class="profile__edit-button"></button>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="photos" aria-label="Фотографии мест">
         <article class="element">
-          <img src="images/karachaevsk.jpg" alt="Фото" class="element__img">
+          <img src="images/karachaevsk.jpg" alt="Фото Карачаево-Черкессии" class="element__img">
           <div class="element__text-area">
-            <h3 class="element__title">Карачаевск</h3>
-            <button class="element__like-btn"></button>
+            <h2 class="element__title">Карачаевск</h2>
+            <button type="button" class="element__like-btn"></button>
           </div>
         </article>
         <article class="element">
-          <img src="images/elbrus.jpg" alt="Фото" class="element__img">
+          <img src="images/elbrus.jpg" alt="Фото Эльбруса" class="element__img">
           <div class="element__text-area">
-            <h3 class="element__title">Гора Эльбрус</h3>
-            <button class="element__like-btn"></button>
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <button type="button" class="element__like-btn"></button>
           </div>
         </article>
         <article class="element">
-          <img src="images/dombai.jpg" alt="Фото" class="element__img">
+          <img src="images/dombai.jpg" alt="Фото Домбая" class="element__img">
           <div class="element__text-area">
-            <h3 class="element__title">Домбай</h3>
-            <button class="element__like-btn"></button>
+            <h2 class="element__title">Домбай</h2>
+            <button type="button" class="element__like-btn"></button>
           </div>
         </article>
         <article class="element">
-          <img src="images/elbrus.jpg" alt="Фото" class="element__img">
+          <img src="images/elbrus.jpg" alt="Фото Эльбруса" class="element__img">
           <div class="element__text-area">
-            <h3 class="element__title">Гора Эльбрус</h3>
-            <button class="element__like-btn"></button>
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <button type="button" class="element__like-btn"></button>
           </div>
         </article>
         <article class="element">
-          <img src="images/dombai.jpg" alt="Фото" class="element__img">
+          <img src="images/dombai.jpg" alt="Фото Домбая" class="element__img">
           <div class="element__text-area">
-            <h3 class="element__title">Домбай</h3>
-            <button class="element__like-btn"></button>
+            <h2 class="element__title">Домбай</h2>
+            <button type="button" class="element__like-btn"></button>
           </div>
         </article>
         <article class="element">
-          <img src="images/karachaevsk.jpg" alt="Фото" class="element__img">
+          <img src="images/karachaevsk.jpg" alt="Фото Карачаево-Черкессии" class="element__img">
           <div class="element__text-area">
-            <h3 class="element__title">Карачаево-Черкессия</h3>
-            <button class="element__like-btn"></button>
+            <h2 class="element__title">Карачаево-Черкессия</h2>
+            <button type="button" class="element__like-btn"></button>
           </div>
         </article>
       </section>
@@ -72,14 +72,14 @@
     </footer>
   </div>
   <div class="popup">
-    <form action="#" class="popup__container">
-      <p class="popup__title">Редактировать профиль</p>
-      <input type="text" class="popup__name-input" required>
-      <input type="text" class="popup__profession-input" required>
+    <form action="#" class="popup__container" name="profileForm">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input type="text" class="popup__input" name="name">
+      <input type="text" class="popup__input" name="job">
       <button class="popup__submit" type="submit">Сохранить</button>
-      <button class="popup__close"></button>
+      <button class="popup__close" type="button"></button>
     </form>
   </div>
-  <script src="blocks/popup/popup.js"></script>
+  <script src="scripts/popup.js"></script>
 </body>
 </html>
