@@ -21,8 +21,8 @@
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 
-/* подключение стилей секции Elements */
-@import url(../blocks/elements/elements.css);
+/* подключение стилей секции Photos */
+@import url(../blocks/photos/photos.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__img/element__img.css);
 @import url(../blocks/element/__like-btn/element__like-btn.css);
