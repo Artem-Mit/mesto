@@ -2,7 +2,7 @@
   margin: 0 auto;
   max-width: 358px;
   width: 100%;
-  padding-bottom: 13px;
+  padding-bottom: 10px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -13,7 +13,7 @@
 }
 
 .popup__input:first-of-type {
-  margin-top: 54px;
+  margin-top: 48px;
 }
 
 .popup__input:not(first-of-type) {

@@ -3,6 +3,8 @@ let profileEditButton = document.querySelector(`.profile__edit-button`);
 let popup = document.querySelector(`.popup`)
 function popupOpener() {
   popup.classList.add(`popup_opened`);
+  nameInput.value = nameField.textContent;
+  jobInput.value = jobField.textContent;
 }
 profileEditButton.addEventListener(`click`,popupOpener);
 
