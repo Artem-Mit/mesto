@@ -3,6 +3,8 @@
   height: 19px;
   background-image: url(../../../images/like_btn_img.svg);
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   border: none;
   background-color: transparent;
   margin-right: 5px;
