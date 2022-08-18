@@ -29,25 +29,25 @@
       <p class="footer__copyright">© 2022. Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup profile__popup">
-    <form action="#" class="popup__container" name="profileForm">
+  <div class="popup profile-popup">
+    <form action="#" class="popup__container profile-popup__container" name="profileForm">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__input" name="name">
-      <input type="text" class="popup__input" name="job">
+      <input type="text" class="popup__input" name="name" placeholder="Имя">
+      <input type="text" class="popup__input" name="job" placeholder="Профессия">
       <button class="popup__submit" type="submit">Сохранить</button>
-      <button class="popup__close profile__close" type="button"></button>
+      <button class="popup__close profile-popup__close" type="button"></button>
     </form>
   </div>
-  <div class="popup add__popup">
-    <form action="#" class="popup__container" name="addForm">
+  <div class="popup add-popup">
+    <form action="#" class="popup__container add-popup__container" name="addForm">
       <h2 class="popup__title">Новое место</h2>
-      <input type="text" class="popup__input" name="name">
-      <input type="text" class="popup__input" name="source">
-      <button class="popup__submit" type="submit">Сохранить</button>
-      <button class="popup__close add__close" type="button"></button>
+      <input type="text" class="popup__input" name="img" placeholder="Название">
+      <input type="text" class="popup__input" name="source" placeholder="Ссылка на картинку">
+      <button class="popup__submit add-popup__submit" type="submit">Сохранить</button>
+      <button class="popup__close add-popup__close" type="button"></button>
     </form>
   </div>
-  <template id="element">
+  <template class="element-template">
     <article class="element">
       <img class="element__img">
       <div class="element__text-area">
