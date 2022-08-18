@@ -1,3 +1,5 @@
+
+
 // Добавить дефолтные карточки на страницу
 const initialCards = [
   {
@@ -31,15 +33,33 @@ const addCard = function (name, link) {
   const elementTemplate = document.querySelector(`.element-template`).content;
   const photoElement = elementTemplate.querySelector(`.element`).cloneNode(true);
   photoElement.querySelector(`.element__img`).src = link;
-  photoElement.querySelector(`.element__img`).alt = `Фото ${name}`;
+  photoElement.querySelector(`.element__img`).alt = name;
   photoElement.querySelector(`.element__title`).textContent = name;
 
 
-  // Кнопка лайка
-  const likeBtn = photoElement.querySelector(`.element__like-btn`)
+  // Лайк
+  const likeBtn = photoElement.querySelector(`.element__like-btn`);
   likeBtn.addEventListener(`click`, function (evt) {
     const eventTarget = evt.target;
     eventTarget.classList.toggle(`element__like-btn_active`);
+  });
+
+
+  // Удаление карточки
+  const deleteBtn = photoElement.querySelector(`.element__delete-btn`);
+  deleteBtn.addEventListener(`click`, function(evt){
+    const eventTarget = evt.target;
+    eventTarget.parentElement.remove();
+  });
+
+  // Просмотр картинки
+  const img = photoElement.querySelector(`.element__img`);
+  img.addEventListener(`click`, function (evt) {
+    const eventTarget = evt.target;
+    console.log(eventTarget);
+    imgPopup.classList.add(`popup_opened`);
+    imgPopup.querySelector(`.img-popup__img`).src = eventTarget.src;
+    imgPopup.querySelector(`.img-popup__caption`).textContent = eventTarget.alt;
   });
 
   return photoElement;
@@ -57,6 +77,7 @@ const editBtn = document.querySelector(`.profile__edit-button`);
 const addBtn = document.querySelector(`.profile__add-button`);
 const profilePopup = document.querySelector(`.profile-popup`);
 const addPopup = document.querySelector(`.add-popup`);
+const imgPopup = document.querySelector(`.img-popup`);
 
 function opener(popup) {
   popup.classList.add(`popup_opened`);
@@ -72,11 +93,13 @@ addBtn.addEventListener(`click`, () => opener(addPopup));
 // Закрыть Popup
 const profileCloseBtn = document.querySelector(`.profile-popup__close`);
 const addCloseBtn = document.querySelector(`.add-popup__close`);
+const imgCloseBtn = document.querySelector(`.img-popup__close`)
 function closer(popup) {
   popup.classList.remove(`popup_opened`)
 };
 profileCloseBtn.addEventListener(`click`, () => closer(profilePopup));
 addCloseBtn.addEventListener(`click`, () => closer(addPopup));
+imgCloseBtn.addEventListener(`click`, () => closer(imgPopup));
 
 
 // Работа формы
