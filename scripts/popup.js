@@ -26,21 +26,31 @@ const initialCards = [
   }
 ];
 
-const addCard = function ({name, link}) {
+
+const addCard = function (name, link) {
   const elementTemplate = document.querySelector(`.element-template`).content;
   const photoElement = elementTemplate.querySelector(`.element`).cloneNode(true);
-  const photos = document.querySelector(`.photos`);
   photoElement.querySelector(`.element__img`).src = link;
   photoElement.querySelector(`.element__img`).alt = `Фото ${name}`;
   photoElement.querySelector(`.element__title`).textContent = name;
-  photos.append(photoElement);
+
+
+  // Кнопка лайка
+  const likeBtn = photoElement.querySelector(`.element__like-btn`)
+  likeBtn.addEventListener(`click`, function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle(`element__like-btn_active`);
+  });
+
+  return photoElement;
 };
 
-initialCards.forEach(addCard);
+const photos = document.querySelector(`.photos`);
 
-
-
-
+initialCards.forEach(function (item){
+  const photo = addCard(item.name, item.link);
+  photos.append(photo);
+});
 
 // Открыть Popup
 const editBtn = document.querySelector(`.profile__edit-button`);
@@ -55,7 +65,6 @@ function opener(popup) {
     jobInput.value = jobField.textContent;
   }
 };
-
 editBtn.addEventListener(`click`, () => opener(profilePopup));
 addBtn.addEventListener(`click`, () => opener(addPopup));
 
@@ -70,34 +79,21 @@ profileCloseBtn.addEventListener(`click`, () => closer(profilePopup));
 addCloseBtn.addEventListener(`click`, () => closer(addPopup));
 
 
-
 // Работа формы
-// Находим форму в DOM
+
 let formElement = document.querySelector(`.profile-popup__container`);
-// Находим поля формы в DOM
 let nameInput = formElement.name;
 let jobInput = formElement.job;
 let nameField = document.querySelector(`.profile__name`);
 let jobField = document.querySelector(`.profile__profession`);
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
-
-    // Получите значение полей jobInput и nameInput из свойства value
-    // Выберите элементы, куда должны быть вставлены значения полей
-    // Вставьте новые значения с помощью textContent
+    evt.preventDefault();
     nameField.textContent = nameInput.value;
     jobField.textContent = jobInput.value;
     closer(profilePopup)
 }
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
 
+formElement.addEventListener('submit', formSubmitHandler);
 
 
 // Добавление новых карт:
@@ -108,13 +104,8 @@ const srcInput = addForm.source;
 
 function newCard (evt) {
   evt.preventDefault();
-  const elementTemplate = document.querySelector(`.element-template`).content;
-  const photoElement = elementTemplate.querySelector(`.element`).cloneNode(true);
-  const photos = document.querySelector(`.photos`);
-  photoElement.querySelector(`.element__img`).src = srcInput.value;
-  photoElement.querySelector(`.element__img`).alt = `Фото ${imgNameInput.value}`;
-  photoElement.querySelector(`.element__title`).textContent = imgNameInput.value;
-  photos.prepend(photoElement);
+  const newPhoto = addCard(imgNameInput.value, srcInput.value);
+  photos.prepend(newPhoto);
   closer(addPopup);
 }
 addForm.addEventListener(`submit`, newCard);
