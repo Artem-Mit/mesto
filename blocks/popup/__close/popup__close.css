@@ -8,6 +8,7 @@
   background-image: url(../../../images/Close_Icon.svg);
   background-position: center;
   background-size: contain;
+  background-repeat: no-repeat;
   border: none;
   cursor: pointer;
   transition: opacity .3s ease-in-out;
