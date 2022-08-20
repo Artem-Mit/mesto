@@ -12,10 +12,9 @@ const nameInput = profileFormElement.name;
 const jobInput = profileFormElement.job;
 const nameField = document.querySelector(`.profile__name`);
 const jobField = document.querySelector(`.profile__profession`);
-const addSbmt = document.querySelector(`.add-popup__submit`);
-const addForm = document.querySelector(`.add-popup__container`);
-const imgNameInput = addForm.img;
-const srcInput = addForm.source;
+const newCardForm = document.querySelector(`.add-popup__container`);
+const imgNameInput = newCardForm.img;
+const srcInput = newCardForm.source;
 
 // Добавить дефолтные карточки на страницу
 const initialCards = [
@@ -76,7 +75,7 @@ const createCard = function (name, link) {
   img.addEventListener(`click`, function (evt) {
     const eventTarget = evt.target;
     console.log(eventTarget);
-    popupBigImg.classList.add(`popup_opened`);
+    openPopup(popupBigImg);
     popupBigImg.querySelector(`.img-popup__img`).src = eventTarget.src;
     popupBigImg.querySelector(`.img-popup__img`).alt = eventTarget.alt;
     popupBigImg.querySelector(`.img-popup__caption`).textContent = eventTarget.alt;
@@ -131,7 +130,7 @@ function createNewCard (evt) {
   const newPhoto = createCard(imgNameInput.value, srcInput.value);
   photos.prepend(newPhoto);
   closePopup(popupNewCard);
-  addForm.reset()
+  newCardForm.reset()
 }
-addForm.addEventListener(`submit`, createNewCard);
+newCardForm.addEventListener(`submit`, createNewCard);
 
