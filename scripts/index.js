@@ -15,6 +15,8 @@ const jobField = document.querySelector(`.profile__profession`);
 const newCardForm = document.querySelector(`.add-popup__container`);
 const imgNameInput = newCardForm.img;
 const srcInput = newCardForm.source;
+const popup = Array.from(document.querySelectorAll('.popup'));
+const form = Array.from(document.querySelectorAll('.popup__container'))
 
 // Добавить дефолтные карточки на страницу
 const initialCards = [
@@ -93,6 +95,11 @@ initialCards.forEach(function (item){
 // Открыть Popup
 function openPopup(popup) {
   popup.classList.add(`popup_opened`);
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+    };
+  });
 };
 
 popupProfileOpenButton.addEventListener(`click`, () => {
@@ -107,10 +114,16 @@ popupAddOpenButton.addEventListener(`click`, () => openPopup(popupNewCard));
 
 function closePopup(popup) {
   popup.classList.remove(`popup_opened`)
+  document.removeEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+    };
+  });
 };
 profileCloseBtn.addEventListener(`click`, () => closePopup(popupProfile));
 addCloseBtn.addEventListener(`click`, () => closePopup(popupNewCard));
 imgCloseBtn.addEventListener(`click`, () => closePopup(popupBigImg));
+
 
 
 // Работа формы
@@ -133,4 +146,16 @@ function createNewCard (evt) {
   newCardForm.reset()
 }
 newCardForm.addEventListener(`submit`, createNewCard);
+
+
+// закрыть попап по клику на оверлей
+
+popup.forEach(function (currentPopup) {
+  currentPopup.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(currentPopup);
+    };
+  });
+});
+
 
