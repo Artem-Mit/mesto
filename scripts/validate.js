@@ -29,20 +29,28 @@ function addHandlers(formElement, config) {
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       validateInput(formElement, input, config)
-      deactiveButton(inputs, button, config)
+      toggleSubmitButton(inputs, button, config)
     });
   });
 };
 
 // Функция выключения кнопки сабмит
-function deactiveButton(inputs, button, config) {
+function toggleSubmitButton(inputs, button, config) {
   if (hasInvalidInput(inputs)) {
-    button.classList.add(config.inactiveButtonClass);
-    button.setAttribute('disabled', true)
+    disactivateBtn(button, config)
   } else {
-    button.classList.remove(config.inactiveButtonClass);
-    button.removeAttribute('disabled', true)
+    activateBtn(button, config)
   }
+}
+
+function activateBtn(button, config) {
+  button.classList.remove(config.inactiveButtonClass);
+  button.removeAttribute('disabled', true)
+}
+
+function disactivateBtn(button, config) {
+  button.classList.add(config.inactiveButtonClass);
+  button.setAttribute('disabled', true)
 }
 
 

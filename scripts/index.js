@@ -110,10 +110,10 @@ function submitCardForm (evt) {
   photos.prepend(newPhoto);
   closePopup(popupNewCard);
   newCardForm.reset()
-  const submitBtn = newCardForm.querySelector('.popup__button');
-  submitBtn.classList.add(config.inactiveButtonClass);
-  submitBtn.setAttribute('disabled', true);
+  const addFormSubmitBtn = newCardForm.querySelector('.popup__button');
+  disactivateBtn(addFormSubmitBtn, config);
 }
+
 newCardForm.addEventListener(`submit`, submitCardForm);
 
 
@@ -137,3 +137,8 @@ function closeByEsc(evt) {
 };
 
 
+
+
+
+  // submitBtn.classList.add(config.inactiveButtonClass);
+  // submitBtn.setAttribute('disabled', true);
