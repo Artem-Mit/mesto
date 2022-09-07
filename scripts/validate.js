@@ -1,14 +1,14 @@
-enableValidation({
+const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-});
+};
 
 
-// Функция добавления текста ошибок в спан (если хотя-бы один инпут "инвалид :D ")
+// Функция добавления текста ошибок в спан (если хотя-бы один инпут невалидный)
 function validateInput(formElement, input, config) {
   const error = formElement.querySelector(`.${input.id}-error`);
   if (!input.validity.valid) {
@@ -30,9 +30,9 @@ function addHandlers(formElement, config) {
     input.addEventListener('input', () => {
       validateInput(formElement, input, config)
       deactiveButton(inputs, button, config)
-    })
-  })
-}
+    });
+  });
+};
 
 // Функция выключения кнопки сабмит
 function deactiveButton(inputs, button, config) {
@@ -44,6 +44,7 @@ function deactiveButton(inputs, button, config) {
     button.removeAttribute('disabled', true)
   }
 }
+
 
 // Функция проверки массива инпутов на хотя бы один невалидный инпут
 function hasInvalidInput(inputs) {
@@ -64,3 +65,4 @@ function enableValidation(config) {
   });
 }
 
+enableValidation(config);
