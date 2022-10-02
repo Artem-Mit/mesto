@@ -1,4 +1,5 @@
 import { Card } from "./Card.js";
+import { FormValidation } from "./validate.js";
 
 const photos = document.querySelector(`.photos`);
 const popupProfileOpenButton = document.querySelector(`.profile__edit-button`);
@@ -21,46 +22,19 @@ const srcInput = newCardForm.source;
 const popups = Array.from(document.querySelectorAll('.popup'));
 
 
-// Добавить дефолтные карточки на страницу
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
-// const createCard = function (name, link) {
-//   const elementTemplate = document.querySelector(`.element-template`).content;
-//   const photoElement = elementTemplate.querySelector(`.element`).cloneNode(true);
-//   const photoElementImg = photoElement.querySelector(`.element__img`);
-//   const photoElementTitle = photoElement.querySelector(`.element__title`);
-//   photoElementImg.src = link;
-//   photoElementImg.alt = name;
-//   photoElementTitle.textContent = name;
-
-
-//   // Лайк
-//   const likeBtn = photoElement.querySelector(`.element__like-btn`);
-//   likeBtn.addEventListener(`click`, function (evt) {
-//     const eventTarget = evt.target;
-//     eventTarget.classList.toggle(`element__like-btn_active`);
-//   });
-
-
-//   // Удаление карточки
-//   const deleteBtn = photoElement.querySelector(`.element__delete-btn`);
-//   deleteBtn.addEventListener(`click`, function(evt){
-//     const eventTarget = evt.target;
-//     eventTarget.parentElement.remove();
-//   });
-
-//   // Просмотр картинки
-//   const img = photoElement.querySelector(`.element__img`);
-//   img.addEventListener(`click`, function (evt) {
-//     const eventTarget = evt.target;
-//     console.log(eventTarget);
-//     openPopup(popupBigImg);
-//     popupImg.src = eventTarget.src;
-//     popupImg.alt = eventTarget.alt;
-//     popupBigImg.querySelector(`.img-popup__caption`).textContent = eventTarget.alt;
-//   });
-
-//   return photoElement;
-// };
+const addFormValidation = new FormValidation(newCardForm, config);
+addFormValidation.enableFormValidation();
+const profileFormValidation = new FormValidation(profileFormElement, config);
+profileFormValidation.enableFormValidation();
 
 function createCard(name,link) {
   const newCard = new Card({name, link}, '.element-template');
@@ -82,12 +56,14 @@ popupProfileOpenButton.addEventListener(`click`, () => {
   openPopup(popupProfile);
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
+  profileFormValidation.restartFormValidation();
 });
 
 popupAddOpenButton.addEventListener(`click`, () => {
   openPopup(popupNewCard)
   imgNameInput.value = '';
   srcInput.value = '';
+  addFormValidation.restartFormValidation();
 });
 
 
@@ -147,5 +123,3 @@ function closeByEsc(evt) {
     closePopup(openedPopup);
   };
 };
-
-

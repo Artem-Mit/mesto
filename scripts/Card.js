@@ -16,20 +16,20 @@ class Card {
       querySelector('.element')
       .cloneNode(true)
   }
+// Функционал кнопки "корзина"
+_deleteBtnHandler() {
+  this._deleteBtn.parentElement.remove();
+}
+// Функционал открытия большого изображения
+_openBigImgHandler() {
+  openPopup(popupBigImg);
+  popupImg.src = this._src;
+  popupImg.alt = this._alt;
+  popupBigImg.querySelector(`.img-popup__caption`).textContent = this._title;
+}
 // Функцонал кнопки "лайк"
   _likeBtnHandler() {
     this._likeBtn.classList.toggle(`element__like-btn_active`);
-  }
-// Функционал кнопки "корзина"
-  _deleteBtnHandler() {
-    this._deleteBtn.parentElement.remove();
-  }
-// Функционал открытия большого изображения
-  _openBigImgHandler() {
-    openPopup(popupBigImg);
-    popupImg.src = this._src;
-    popupImg.alt = this._alt;
-    popupBigImg.querySelector(`.img-popup__caption`).textContent = this._title;
   }
 // Установка слушателей событий
   _setEventListeners() {
