@@ -21,7 +21,7 @@ const imgNameInput = newCardForm.img;
 const srcInput = newCardForm.source;
 const popups = Array.from(document.querySelectorAll('.popup'));
 
-
+// Включение валидации
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -40,7 +40,7 @@ function createCard(name,link) {
   const newCard = new Card({name, link}, '.element-template');
   return newCard.generateCard();
 }
-
+// Добавление стандартных карточек на страницу
 initialCards.forEach(function (item){
   const photo = createCard(item.name, item.link);
   photos.append(photo);
