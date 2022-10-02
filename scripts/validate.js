@@ -8,7 +8,7 @@ export class FormValidation {
     this._errorClass = config.errorClass;
     this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._button = this._form.querySelector(this._submitButtonSelector);
-  }
+  };
 // Проверка валидации инпутов
   _hasInvalidInput() {
     return this._inputs.some((inputElement) => {
@@ -23,17 +23,17 @@ export class FormValidation {
     } else {
       this._hideInputError(input)
     }
-  }
+  };
   _showInputError(input) {
     input.classList.add(this._inputErrorClass);
     this._error.classList.add(this._errorClass);
     this._error.textContent = input.validationMessage;
-  }
+  };
   _hideInputError(input) {
     input.classList.remove(this._inputErrorClass);
     this._error.classList.remove(this._errorClass);
     this._error.textContent = '';
-  }
+  };
 // Функция выключения кнопки сабмит
   _toggleSubmitButton() {
     if (this._hasInvalidInput()) {
@@ -43,7 +43,7 @@ export class FormValidation {
       this._button.classList.remove(this._inactiveButtonClass);
       this._button.removeAttribute('disabled', true)
     }
-  }
+  };
 // Добавление слушателей на ввод в инпуты
   _addHandlers() {
     this._inputs.forEach((input) => {
@@ -65,6 +65,6 @@ export class FormValidation {
     this._inputs.forEach((input) =>
     this._hideInputError(input));
     this._toggleSubmitButton();
-  }
+  };
 
 }
