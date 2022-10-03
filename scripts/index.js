@@ -1,5 +1,5 @@
-import { Card } from "./Card.js";
-import { FormValidation } from "./validate.js";
+import Card from "./Card.js";
+import { FormValidation } from "./FormValidation.js";
 
 const photos = document.querySelector(`.photos`);
 const popupProfileOpenButton = document.querySelector(`.profile__edit-button`);
@@ -9,7 +9,7 @@ const popupNewCard = document.querySelector(`.add-popup`);
 export const popupBigImg = document.querySelector(`.img-popup`);
 export const popupImg = popupBigImg.querySelector(`.img-popup__img`);
 const profileCloseBtn = document.querySelector(`.profile-popup__close`);
-const addCloseBtn = document.querySelector(`.add-popup__close`);
+const buttonCloseAddCardPopup = document.querySelector(`.add-popup__close`);
 const imgCloseBtn = document.querySelector(`.img-popup__close`);
 const profileFormElement = document.querySelector(`.profile-popup__container`);
 const nameInput = profileFormElement.name;
@@ -31,8 +31,8 @@ const config = {
   errorClass: 'popup__error_visible'
 };
 
-const addFormValidation = new FormValidation(newCardForm, config);
-addFormValidation.enableFormValidation();
+const newCardFormValidation = new FormValidation(newCardForm, config);
+newCardFormValidation.enableFormValidation();
 const profileFormValidation = new FormValidation(profileFormElement, config);
 profileFormValidation.enableFormValidation();
 
@@ -63,7 +63,7 @@ popupAddOpenButton.addEventListener(`click`, () => {
   openPopup(popupNewCard)
   imgNameInput.value = '';
   srcInput.value = '';
-  addFormValidation.restartFormValidation();
+  newCardFormValidation.restartFormValidation();
 });
 
 
@@ -75,7 +75,7 @@ function closePopup(popup) {
 };
 
 profileCloseBtn.addEventListener(`click`, () => closePopup(popupProfile));
-addCloseBtn.addEventListener(`click`, () => closePopup(popupNewCard));
+buttonCloseAddCardPopup.addEventListener(`click`, () => closePopup(popupNewCard));
 imgCloseBtn.addEventListener(`click`, () => closePopup(popupBigImg));
 
 
@@ -98,8 +98,6 @@ function submitCardForm (evt) {
   photos.prepend(newPhoto);
   closePopup(popupNewCard);
   newCardForm.reset()
-  const addFormSubmitBtn = newCardForm.querySelector('.popup__button');
-  disactivateBtn(addFormSubmitBtn, config);
 }
 
 newCardForm.addEventListener(`submit`, submitCardForm);

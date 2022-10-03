@@ -41,7 +41,7 @@ export class FormValidation {
       this._button.setAttribute('disabled', true)
     } else {
       this._button.classList.remove(this._inactiveButtonClass);
-      this._button.removeAttribute('disabled', true)
+      this._button.removeAttribute('disabled')
     }
   };
 // Добавление слушателей на ввод в инпуты
