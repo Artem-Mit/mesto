@@ -62,9 +62,12 @@ export class FormValidation {
   };
 // Рестарт валидации (при закрытии\открытии формы)
   restartFormValidation() {
-    this._inputs.forEach((input) =>
-    this._hideInputError(input));
-    this._toggleSubmitButton();
-  };
+    this._inputs.forEach((input) => {
+      if (input.validity.valid) {
+      this._hideInputError(input);
+      }
+      this._toggleSubmitButton();
+    }
+    )};
 
 }
