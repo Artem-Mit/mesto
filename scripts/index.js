@@ -20,6 +20,8 @@ const jobField = document.querySelector(`.profile__profession`);
 const newCardForm = document.querySelector(`.add-popup__container`);
 
 const imgPopup = new PopupWithImage(popupBigImg);
+const info = new UserInfo({name: nameField, info: jobField});
+
 
 const newCardPopup = new PopupWithForm(popupNewCard, (data) => {
   const card = new Card(data, '.element-template', imgPopup.open.bind(imgPopup));
@@ -29,26 +31,24 @@ const newCardPopup = new PopupWithForm(popupNewCard, (data) => {
 popupAddOpenButton.addEventListener('click', () => {
   newCardFormValidation.restartFormValidation();
   newCardPopup.open();
-  newCardPopup.setEventListeners();
 })
+newCardPopup.setEventListeners();
 
 const profilePopup = new PopupWithForm(popupProfile, (data) => {
-  const info = new UserInfo({name: nameField, info: jobField});
   info.setUserInfo(data.name, data.link);
 })
 popupProfileOpenButton.addEventListener('click', () => {
   profilePopup.open();
-  const info = new UserInfo({name: nameField, info: jobField});
   const fields = info.getUserInfo();
   nameInput.value = fields.name;
   jobInput.value = fields.info;
-  profilePopup.setEventListeners();
 })
+profilePopup.setEventListeners();
 
 const defaultCards = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '.element-template', imgPopup.open.bind(imgPopup));
+  renderer: (data) => {
+    const card = new Card(data, '.element-template', imgPopup.open.bind(imgPopup));
     const newCard = card.generateCard();
     defaultCards.addItem(newCard);
   }},
