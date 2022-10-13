@@ -1,9 +1,12 @@
-import Card from "./Card.js";
-import { FormValidation } from "./FormValidation.js";
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
-import Section from "./Section.js";
-import UserInfo from "./UserInfo.js";
+import Card from "./scripts/Card.js";
+import { FormValidation } from "./scripts/FormValidation.js";
+import PopupWithForm from "./scripts/PopupWithForm.js";
+import PopupWithImage from "./scripts/PopupWithImage.js";
+import Section from "./scripts/Section.js";
+import UserInfo from "./scripts/UserInfo.js";
+import { initialCards } from "./scripts/initialCards.js";
+
+import './pages/index.css';
 
 
 const photos = document.querySelector(`.photos`);
