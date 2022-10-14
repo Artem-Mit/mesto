@@ -16,20 +16,23 @@ const popupProfile = document.querySelector(`.profile-popup`);
 const popupNewCard = document.querySelector(`.add-popup`);
 const popupBigImg = document.querySelector(`.img-popup`);
 const profileFormElement = document.querySelector(`.profile-popup__container`);
-const nameInput = profileFormElement.name;
+const nameInput = profileFormElement.person;
 const jobInput = profileFormElement.job;
 const nameField = document.querySelector(`.profile__name`);
 const jobField = document.querySelector(`.profile__profession`);
 const newCardForm = document.querySelector(`.add-popup__container`);
 
 const imgPopup = new PopupWithImage(popupBigImg);
+imgPopup.setEventListeners();
 const info = new UserInfo({name: nameField, info: jobField});
 
+function getNewCard (data) {
+  return new Card(data, '.element-template', imgPopup.open.bind(imgPopup), photos)
+  .generateCard();
+}
 
 const newCardPopup = new PopupWithForm(popupNewCard, (data) => {
-  const card = new Card(data, '.element-template', imgPopup.open.bind(imgPopup));
-  const newCard = card.generateCard();
-  photos.prepend(newCard);
+  defaultCards.addItem(getNewCard(data), true);
 })
 popupAddOpenButton.addEventListener('click', () => {
   newCardFormValidation.restartFormValidation();
@@ -38,7 +41,7 @@ popupAddOpenButton.addEventListener('click', () => {
 newCardPopup.setEventListeners();
 
 const profilePopup = new PopupWithForm(popupProfile, (data) => {
-  info.setUserInfo(data.name, data.link);
+  info.setUserInfo(data.person, data.job);
 })
 popupProfileOpenButton.addEventListener('click', () => {
   profilePopup.open();
@@ -50,11 +53,8 @@ profilePopup.setEventListeners();
 
 const defaultCards = new Section({
   items: initialCards,
-  renderer: (data) => {
-    const card = new Card(data, '.element-template', imgPopup.open.bind(imgPopup));
-    const newCard = card.generateCard();
-    defaultCards.addItem(newCard);
-  }},
+  renderer: (data) => defaultCards.addItem(getNewCard(data))
+  },
   photos
 );
 defaultCards.render();

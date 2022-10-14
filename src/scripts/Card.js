@@ -15,7 +15,7 @@ export default class Card {
   }
 // Функционал кнопки "корзина"
   _deleteBtnHandler() {
-    this._element.closest('.element').remove();
+    this._element.remove();
     this._element = null;
   }
 // Функционал открытия большого изображения

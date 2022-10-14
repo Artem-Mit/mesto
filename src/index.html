@@ -32,7 +32,7 @@
     <form action="#" class="popup__container profile-popup__container popup__form" name="profileForm" novalidate>
       <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__fieldset">
-        <input type="text" class="popup__input" id="name-input" name="name" placeholder="Имя" pattern=".{2,40}" required>
+        <input type="text" class="popup__input" id="name-input" name="person" placeholder="Имя" pattern=".{2,40}" required>
         <span class="popup__error name-input-error"></span>
         <input type="text" class="popup__input" id="job-input" name="job" placeholder="О себе" pattern=".{2,200}" required>
         <span class="popup__error job-input-error"></span>
@@ -45,9 +45,9 @@
     <form action="#" class="popup__container add-popup__container popup__form" name="addForm" novalidate>
       <h2 class="popup__title">Новое место</h2>
       <fieldset class="popup__fieldset">
-        <input type="text" class="popup__input" id="img-input" name="img" placeholder="Название" pattern=".{2,30}" required>
+        <input type="text" class="popup__input" id="img-input" name="name" placeholder="Название" pattern=".{2,30}" required>
         <span class="popup__error img-input-error"></span>
-        <input type="url" class="popup__input" id="source-input" name="source" placeholder="Ссылка на картинку" required>
+        <input type="url" class="popup__input" id="source-input" name="link" placeholder="Ссылка на картинку" required>
         <span class="popup__error source-input-error"></span>
       </fieldset>
       <button class="popup__button popup__button_disabled" type="submit" disabled="true">Сохранить</button>

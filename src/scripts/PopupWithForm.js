@@ -9,7 +9,10 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    return {name: this._inputs[0].value, link: this._inputs[1].value};
+    return this._inputs.reduce((data, input) => {
+      data[input.name] = input.value;
+      return data;
+    }, {});
   }
 
   _closePopupwithForm(){
@@ -22,7 +25,7 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitForm(this._getInputValues());
-      this._closePopupwithForm()
+      this._closePopupwithForm();
     })
   }
 }
