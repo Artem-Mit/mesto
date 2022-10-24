@@ -1,9 +1,11 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, deleteCardClick) {
     this._title = data.name;
     this._link = data.link;
+    this._likes = data.likes;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._deleteCardClick = deleteCardClick;
   }
 // Получить шаблон
   _getTemplate() {
@@ -15,8 +17,7 @@ export default class Card {
   }
 // Функционал кнопки "корзина"
   _deleteBtnHandler() {
-    this._element.remove();
-    this._element = null;
+    this._deleteCardClick()
   }
 // Функционал открытия большого изображения
   _openBigImgHandler() {
@@ -42,6 +43,7 @@ export default class Card {
     this._img.src = this._link;
     this._img.alt = this._title;
     this._titleName.textContent = this._title;
+    this._likes.length = this._element.querySelector('.element__like-counter').textContent
     this._setEventListeners();
     return this._element;
   }
