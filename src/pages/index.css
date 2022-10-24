@@ -31,6 +31,7 @@
 @import url(../blocks/element/__like-btn/_active/element__like-btn_active.css);
 @import url(../blocks/element/__delete-btn/element__delete-btn.css);
 @import url(../blocks/element/__like-counter/element__like-counter.css);
+@import url(../blocks/element/__delete-btn/_hide/element__delete-btn_hide.css);
 
 /* подключение стилей секции Footer */
 @import url(../blocks/footer/footer.css);

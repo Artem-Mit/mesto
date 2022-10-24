@@ -10,6 +10,14 @@ import './pages/index.css';
 import PopupDeleteCardConfirm from "./scripts/PopupDeleteCardConfirm.js";
 
 
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
 const photos = document.querySelector(`.photos`);
 const popupProfileOpenButton = document.querySelector(`.profile__edit-button`);
@@ -24,12 +32,18 @@ const nameField = document.querySelector(`.profile__name`);
 const jobField = document.querySelector(`.profile__profession`);
 const profileAvatar = document.querySelector('.profile__avatar')
 const newCardForm = document.querySelector(`.add-popup__container`);
-const popupConfirmation = document.querySelector('.confirmation-popup')
+const popupConfirmation = document.querySelector('.confirmation-popup');
+let userId = null;
 
 const confirmationPopup = new PopupDeleteCardConfirm(popupConfirmation);
 confirmationPopup.setEventListeners();
 const imgPopup = new PopupWithImage(popupBigImg);
 imgPopup.setEventListeners();
+const defaultCards = new Section({
+  renderer: (data) => defaultCards.addItem(getNewCard(data))
+  },
+  photos
+);
 const info = new UserInfo({name: nameField, info: jobField, avatar: profileAvatar});
 const api = new Api ({
   url: "https://mesto.nomoreparties.co/v1/cohort-52",
@@ -43,6 +57,7 @@ const api = new Api ({
 // Информация о пользователе
 api.getProfileInfo()
 .then((result) => {
+  userId = result._id;
   info.setUserInfo(result.name, result.about, result.avatar)
 })
 
@@ -64,18 +79,11 @@ profilePopup.setEventListeners();
 // Рендер карточек на странице
 api.getInitialCards()
 .then((data) => {
-  console.log(data)
-  const defaultCards = new Section({
-    items: data,
-    renderer: (data) => defaultCards.addItem(getNewCard(data))
-    },
-    photos
-  );
-  defaultCards.render();
+  defaultCards.render(data);
 })
 
 function getNewCard (data) {
-  return new Card(data, '.element-template', imgPopup.open.bind(imgPopup), confirmationPopup.open.bind(confirmationPopup), photos)
+  return new Card(data, '.element-template', imgPopup.open.bind(imgPopup), confirmationPopup.open.bind(confirmationPopup), userId, photos)
   .generateCard();
 }
 
@@ -85,7 +93,7 @@ function getNewCard (data) {
 const newCardPopup = new PopupWithForm(popupNewCard, (data) => {
   api.postNewCard({name: data.name, link: data.link})
   .then((result) => {
-    photos.prepend(getNewCard(result));
+    defaultCards.addItem(getNewCard(result),true)
   })
 
 })
@@ -96,18 +104,6 @@ popupAddOpenButton.addEventListener('click', () => {
 newCardPopup.setEventListeners();
 
 
-
-
-
-
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
 
 const newCardFormValidation = new FormValidation(newCardForm, config);
 newCardFormValidation.enableFormValidation();
