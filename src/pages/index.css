@@ -20,6 +20,7 @@
 @import url(../blocks/profile/__profession/profile__profession.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/avatar-container/profile__avatar-container.css);
 
 /* подключение стилей секции Photos */
 @import url(../blocks/photos/photos.css);

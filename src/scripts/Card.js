@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, deleteCardClick, userId) {
+  constructor(data, templateSelector, handleCardClick, deleteCardClick, useLikeOnCard, userId) {
     this._title = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -8,6 +8,9 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._deleteCardClick = deleteCardClick;
     this._userId = userId;
+    this._useLikeOnCard = useLikeOnCard;
+    this._cardIsLiked = Boolean(data.likes.length >= 0);
+    this._likedByMyself = Boolean(this._likes.find((like) => like._id === this._userId))
   }
 // Получить шаблон
   _getTemplate() {
@@ -21,14 +24,31 @@ export default class Card {
   _deleteBtnHandler() {
     this._deleteCardClick()
   }
+
+  removeCard() {
+    this._element.remove();
+    this._element = null;
+  }
+
 // Функционал открытия большого изображения
   _openBigImgHandler() {
     this._handleCardClick(this._link, this._title);
   }
 // Функцонал кнопки "лайк"
   _likeBtnHandler() {
-    this._likeBtn.classList.toggle(`element__like-btn_active`);
+    this._useLikeOnCard(this._likedByMyself)
   }
+
+  addLike(number) {
+    this._likeBtn.classList.add('element__like-btn_active');
+    this._element.querySelector('.element__like-counter').textContent = number;
+  }
+
+  deleteLike(number) {
+    this._likeBtn.classList.remove('element__like-btn_active');
+    this._element.querySelector('.element__like-counter').textContent = number;
+  }
+
 // Установка слушателей событий
   _setEventListeners() {
     this._likeBtn = this._element.querySelector('.element__like-btn');
@@ -51,11 +71,15 @@ export default class Card {
     this._img.src = this._link;
     this._img.alt = this._title;
     this._titleName.textContent = this._title;
-    this._likes.length = this._element.querySelector('.element__like-counter').textContent
     this._setEventListeners();
     this._removeDeleteBtn()
+    if (this._cardIsLiked) {
+      this._element.querySelector('.element__like-counter').textContent = this._likes.length;
+    }
+    if (this._likedByMyself) {
+      this._likeBtn.classList.add('element__like-btn_active');
+    }
     return this._element;
   }
-
 
 }

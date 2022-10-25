@@ -32,4 +32,20 @@ export default class Api {
   postNewCard(data) {
     return this._useFetch('/cards', 'POST', data)
   }
+
+  deleteCard(id) {
+    return this._useFetch(`/cards/${id}`, 'DELETE')
+  }
+
+  setLike(id) {
+    return this._useFetch(`/cards/${id}/likes`, 'PUT')
+  }
+
+  removeLike(id) {
+    return this._useFetch(`/cards/${id}/likes`, 'DELETE')
+  }
+
+  setAvatar(data) {
+    return this._useFetch(`/users/me/avatar`, 'PATCH', data)
+  }
 }
