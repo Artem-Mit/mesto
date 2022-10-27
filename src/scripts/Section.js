@@ -4,9 +4,9 @@ export default class Section {
     this._renderer = renderer;
     this._containerSelector = containerSelector;
   }
-  render(data) {
+  renderItems(data, myId) {
     data.forEach((item) => {
-      this._renderer(item);
+      this._renderer(item, myId);
     });
 
   }

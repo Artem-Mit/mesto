@@ -1,5 +1,3 @@
-import { data } from "autoprefixer";
-
 export default class Api {
   constructor (options) {
     this._url = options.url;
@@ -8,13 +6,14 @@ export default class Api {
 
   _useFetch(link, newMethod = "GET", newBody) {
     return fetch(this._url+link, {method: newMethod , headers: this._headers, body: JSON.stringify(newBody)})
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => console.log(err))
+    .then(res => this._checkResult(res))
+  }
+
+  _checkResult(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getProfileInfo() {

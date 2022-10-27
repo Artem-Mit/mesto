@@ -63,7 +63,8 @@ export class FormValidation {
 // Рестарт валидации (при закрытии\открытии формы)
   restartFormValidation() {
     this._inputs.forEach((input) => {
-      if (input.validity.valid) {
+      this._error = this._form.querySelector(`.${input.id}-error`);
+      if (this._error) {
       this._hideInputError(input);
       }
       this._toggleSubmitButton();
